@@ -431,3 +431,6 @@ kubectl config view
 minikube stop
 ```
 
+## 20- Save the output logs of both [run_kubernetes.sh & run_kubernetes.sh]
+
+# Thanks

@@ -1,1 +1,58 @@
-<paste log output from Docker prediction, here>
+ubuntu@ip-172-31-2-67:~/project-ml-microservice-kubernetes$ ./run_docker.sh
+[+] Building 0.3s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                    0.0s
+ => => transferring dockerfile: 667B                                                    0.0s
+ => [internal] load .dockerignore                                                       0.0s
+ => => transferring context: 2B                                                         0.0s
+ => [internal] load metadata for docker.io/library/python:3.7.3-stretch                 0.2s
+ => [auth] library/python:pull token for registry-1.docker.io                           0.0s
+ => [internal] load build context                                                       0.0s
+ => => transferring context: 201B                                                       0.0s
+ => [1/5] FROM docker.io/library/python:3.7.3-stretch@sha256:205cafadbb7f0c48f2a6d655e  0.0s
+ => CACHED [2/5] WORKDIR /app                                                           0.0s
+ => CACHED [3/5] COPY app.py requirements.txt /app/                                     0.0s
+ => CACHED [4/5] COPY model_data /app/model_data/                                       0.0s
+ => CACHED [5/5] RUN pip install --no-cache-dir --upgrade pip &&     pip install --no-  0.0s
+ => exporting to image                                                                  0.0s
+ => => exporting layers                                                                 0.0s
+ => => writing image sha256:fffd8f5472b113f462189ef6fcf4087b087f396ffccaebf1458795c8fa  0.0s
+ => => naming to docker.io/library/mlproject                                            0.0s
+REPOSITORY                    TAG       IMAGE ID       CREATED             SIZE
+omarkhalil10/mlproject        v1.0.0    fffd8f5472b1   About an hour ago   1.19GB
+mlproject                     latest    fffd8f5472b1   About an hour ago   1.19GB
+<none>                        <none>    0f6b854a0d2b   3 hours ago         1.19GB
+gcr.io/k8s-minikube/kicbase   v0.0.37   01c0ce65fff7   3 weeks ago         1.15GB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+/usr/local/lib/python3.7/site-packages/sklearn/utils/validation.py:37: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+  LARGE_SPARSE_SUPPORTED = LooseVersion(scipy_version) >= '0.14.0'
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+/usr/local/lib/python3.7/site-packages/sklearn/utils/validation.py:37: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+  LARGE_SPARSE_SUPPORTED = LooseVersion(scipy_version) >= '0.14.0'
+ * Debugger is active!
+ * Debugger PIN: 812-905-805
+[2023-02-22 19:57:01,833] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2023-02-22 19:57:01,882] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-02-22 19:57:01,902] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-02-22 19:57:01,915] INFO in app: output prediction: [20.35373177134412]
+172.17.0.1 - - [22/Feb/2023 19:57:01] "POST /predict HTTP/1.1" 200 -
+
+
+# Another Terminal
+
+ubuntu@ip-172-31-2-67:~/project-ml-microservice-kubernetes$ ./make_prediction.sh
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
