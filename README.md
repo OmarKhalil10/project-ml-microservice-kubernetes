@@ -109,4 +109,254 @@ sudo apt install make
 make install
 ```
 
+### 8- create a free docker account
+
+- you can create it from this [link](https://hub.docker.com/signup)
+- you’ll choose a unique username and link your email to a docker account. Your username is your unique docker ID.
+
+- To install the latest version of docker, choose the Community Edition (CE) for your operating system, on [How To Install and Use Docker on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04).
+- It is also recommended that you install the latest, stable release
+
+### 9- Docker install and Configure
+
+### Step 1 — Installing Docker
+
+1. Update your existing list of packages
+
+```
+sudo apt update
+```
+
+2. Install a few prerequisite packages which let apt use packages over HTTPS
+
+```
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+3. Then add the GPG key for the official Docker repository to your system
+
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+4. Add the Docker repository to APT sources
+
+```
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+```
+
+5. Update the package database with the Docker packages from the newly added repo
+
+```
+sudo apt update
+```
+
+6. Make sure you are about to install from the Docker repo instead of the default Ubuntu repo
+
+```
+apt-cache policy docker-ce
+```
+
+> You’ll see output like this, although the version number for Docker may be different
+
+**Output of apt-cache policy docker-ce**
+```
+docker-ce:
+  Installed: (none)
+  Candidate: 18.03.1~ce~3-0~ubuntu
+  Version table:
+     18.03.1~ce~3-0~ubuntu 500
+        500 https://download.docker.com/linux/ubuntu bionic/stable amd64 Packages
+```
+
+> Notice that docker-ce is not installed, but the candidate for installation is from the Docker repository for Ubuntu 18.04 (bionic).
+
+7. install Docker
+
+```
+sudo apt install docker-ce
+```
+
+8. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it’s running
+
+```
+sudo systemctl status docker
+```
+
+- After installation, you can verify that you’ve successfully installed docker by printing its version in your terminal
+```
+docker --version
+```
+
+### Step 2 — Executing the Docker Command Without Sudo (Optional)
+
+1. Switch user
+```
+sudo su
+```
+
+2. Reboot
+```
+reboot now
+```
+
+3. Create a password
+
+```
+sudo passwd ubuntu
+```
+
+4. If you want to avoid typing sudo whenever you run the docker command, add your username to the docker group
+
+```
+sudo usermod -aG docker ${USER}
+```
+
+5. To apply the new group membership, log out of the server and back in, or type the following
+
+```
+su - ${USER}
+```
+
+> You will be prompted to enter your user’s password to continue.
+
+6. To confirm that docker is running
+
+```
+docker ps
+```
+
+### 10- Run Lint Checks
+
+1. Install hadolint following the instructions (inside the instance itself not the venv)
+
+```
+sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 && sudo chmod +x /bin/hadolint
+```
+
+2. Retuen to the project folder
+
+```
+ubuntu@ip-172-31-2-67:~/project-ml-microservice-kubernetes
+```
+
+```
+source ~/.devops/bin/activate
+cd project-ml-microservice-kubernetes
+```
+
+3. Run this command to see if hadolint catches any errors in your Dockerfile
+
+```
+make lint
+```
+
+> If you faced a problem you should [Comment] pylint --disable=R,C,W1203,W1202 app.py in the [Makefile]
+
+4. Ensure Everything is file with Dockerfile
+
+```
+hadolint Dockerfile
+```
+
+### 11- Install minikube
+
+1. Go to this [link](https://minikube.sigs.k8s.io/docs/start/) and choose [**linux** as your OS]
+2. Install minikube
+
+```
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
+
+3. Ensure it works
+
+```
+minikube version
+```
+
+### 12- Install kubectl
+
+1. Go to this [link](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+
+2. Install kubectl binary with curl on Linux
+
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+
+3. Install kubectl
+
+```
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+4. Test to ensure the version you installed is up-to-date
+
+```
+kubectl version --client
+
+```
+
+```
+kubectl version --output yaml
+```
+
+5. Start your minikube
+
+```
+minikube start
+```
+
+> If you faced an issue starting your minikube fo that
+
+```
+sudo usermod -aG docker ${USER}
+su - ${USER}
+```
+
+> Ensure that you are inside your venv and then
+
+```
+minikube status
+```
+
+```
+kubectl version --output yaml
+```
+
+### 12- Start to edit your [**Dockerfile**]
+
+### 13- Start to edit your [**run_docker.sh**]
+
+### Step 1: Build image and add a descriptive tag
+
+```
+docker build --tag=mlproject .
+```
+
+### Step 2: List docker images
+
+```
+docker image ls
+```
+
+### Step 3: Run flask app
+
+```
+docker run -p 8000:80 mlproject
+```
+
+> You can interact now with localhost using
+
+```
+curl localhost:8000 <h3>Sklearn Prediction Home</h3>
+```
+
+```
+curl localhost:8000
+```
+
+> Ensure that you are inside your venv
+
 
