@@ -52,3 +52,61 @@ source .devops/bin/activate
 ### Python CircleCI 2.0 configuration file
 
 Check [link](https://circleci.com/docs/language-python/) for more details
+
+
+## Project Setup
+
+### 1- Create EC2 instance with the following specs
+
+- OS [Ubuntu 18.4 LTS (HVM)]
+- Instance Type [t3.small]
+- Keypair [Required (**.pem**)]
+- Security Group [Default]
+- Storage [20 GiB-gp2]
+
+### 2- Connect to it using [Remote Explorer]
+
+```
+ssh -VT ubuntu@[EC2 External IP Address]
+```
+
+### 3- clone the project repository, and navigate to the project folder
+
+```
+git clone https://github.com/udacity/DevOps_Microservices.git
+cd DevOps_Microservices/project-ml-microservice-kubernetes
+```
+
+### 4- Update packages
+
+```
+sudo apr-get update
+```
+
+```
+sudp apt-get upgrade python3
+```
+
+```
+sudo apt-get install python3-venv
+```
+### 5- Create (and activate) a new environment, named .devops with Python 3. If prompted to proceed with the install (Proceed [y]/n) type y
+
+```
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
+```
+
+### 6- Install make
+
+```
+sudo apt install make
+```
+
+### 7- Installing dependencies via project Makefile
+
+```
+make install
+```
+
+
