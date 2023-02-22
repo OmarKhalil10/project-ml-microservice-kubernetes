@@ -1,1 +1,14 @@
-<paste log output from Kubernetes-mediated prediction, here>
+(.devops) ubuntu@ip-172-31-2-67:~/project-ml-microservice-kubernetes$ ./run_kubernetes.sh
+NAME        READY   STATUS    RESTARTS   AGE
+mlproject   1/1     Running   0          3m3s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+
+(.devops) ubuntu@ip-172-31-2-67:~/project-ml-microservice-kubernetes$ ./make_prediction.sh
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}

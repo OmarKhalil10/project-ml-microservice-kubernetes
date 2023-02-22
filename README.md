@@ -357,6 +357,77 @@ curl localhost:8000 <h3>Sklearn Prediction Home</h3>
 curl localhost:8000
 ```
 
-> Ensure that you are inside your venv
+> Ensure that you are inside your venv and your docker container is up and running
 
+### NOTE
+
+- You can always [**STOP**] it by press [**CTRL + C**
+
+- You can rerun it by executing [run_docker.sh]
+
+```
+./run_docker.sh
+```
+
+### 14- Make Predictions
+
+- Ensure docker is running and in the anther terminal run [make_predictions.sh]
+
+```
+./make_predictions.sh
+```
+
+### 15- TO DO:  Log the output prediction value
+
+- Add this line of code
+
+```
+LOG.info(f"output prediction: {prediction}")
+```
+
+### 15- Make Predictions again
+
+- Ensure docker is running and in the anther terminal run [make_predictions.sh]
+
+```
+./make_predictions.sh
+```
+
+### 16- Edit [upload_docker.sh]
+
+### 17- Run [upload_docker.sh]
+
+```
+./upload_docker.sh
+```
+
+### 18- Edit [run_kubernetes.sh]
+
+### 19- Run [run_kubernetes.sh]
+
+1. At first you will need to start minikube
+
+```
+minikube start
+```
+
+2. Check that you have one cluster running
+
+```
+kubectl config view
+```
+
+> you should see at least one cluster with a certificate-authority and server.
+
+3. Execute [run_kubernetes.sh]
+
+```
+./run_kubernetes.sh
+```
+
+4. stop minikube
+
+```
+minikube stop
+```
 
