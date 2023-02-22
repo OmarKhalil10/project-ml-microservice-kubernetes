@@ -433,4 +433,64 @@ minikube stop
 
 ## 20- Save the output logs of both [run_kubernetes.sh & run_kubernetes.sh]
 
-# Thanks
+## Additional Info
+
+### How to run `app.py`
+
+1. Standalone:  `python app.py`
+2. Run in Docker:  `./run_docker.sh`
+3. Run in Kubernetes:  `./run_kubernetes.sh`
+
+### How to setup and run Kubernetes
+
+* Setup and Configure Docker locally
+* Setup and Configure Kubernetes locally
+* Create Flask app in Container
+* Run via kubectl
+
+### Files Map in the repository
+
+1. Files to build and run docker image
+
+```
+./run_docker.sh
+```
+
+2. Files to upload images to docker hub
+
+```
+./upload_docker.sh
+```
+
+
+3. Files to deploy to kubernetes
+
+```
+./run_kubernetes.sh
+```
+
+4. Files to build application
+
+  * Makefile
+
+5. Application file
+
+  * app.py
+
+  * requirements.txt
+
+6. Application Output Log Files
+
+  * output_txt_files/docker_out.txt
+
+  * output_txt_files/kubernetes_out.txt
+
+7. Folder for Application Models
+
+  * model_data/
+
+8. Folder for Circleci Config Files
+
+  * .circleci/
+
+# Thats All :)
