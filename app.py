@@ -1,12 +1,15 @@
 from flask import Flask, request, jsonify
 from flask.logging import create_logger
+from flask_cors import CORS
 import logging
 
 import pandas as pd
 from sklearn.externals import joblib
 from sklearn.preprocessing import StandardScaler
+from flask.templating import render_template
 
 app = Flask(__name__)
+cors = CORS(app)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
@@ -20,8 +23,12 @@ def scale(payload):
 
 @app.route("/")
 def home():
-    html = f"<h3>Sklearn Prediction Home</h3>"
-    return html.format(format)
+    # Uncomment the following line to display the simple HTML header for the home page
+    # html = f"<h3>Sklearn Prediction Home</h3>"
+    # return html.format(format)
+    
+    # Comment out the following line if you don't want to display the home page
+    return render_template('index.html')
 
 @app.route("/predict", methods=['POST'])
 def predict():
@@ -52,7 +59,8 @@ def predict():
         { "prediction": [ <val> ] }
 
         """
-
+    # Commet out the following line before deploying to production [Required Fix]
+    clf = joblib.load("./model_data/boston_housing_prediction.joblib")
     # Logging the input payload
     json_payload = request.json
     LOG.info(f"JSON payload: \n{json_payload}")
