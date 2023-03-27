@@ -1,0 +1,60 @@
+.container{
+    height:97.5vh;
+    position: relative;
+}
+.container img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+}
+.container .layout{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.626)
+}
+.container .inputContainer{
+    position: absolute;
+    left: 430px;
+    top: 20vh;
+}
+.container .inputContainer label{
+    position: absolute;
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 22px;
+    top:-5vh;
+}
+.container .inputContainer input{
+    width: 600px;
+    outline: none;
+    font-size: 22px;
+    height: 6vh;
+}
+.container .inputContainer button{
+    position: relative;
+    color: aliceblue;
+    font-size: 22px;
+    margin: 15px 0 0 0;
+    width: 300px;
+    height: 6.4vh;
+    background-color: goldenrod;
+    border: none;
+    cursor: pointer;
+}
+.container .inputContainer button:hover{
+    background-color:teal;
+    transition: 1s ease-out;
+}
+.container .outputContainer{
+    position: relative;
+    margin: -250px 0 0 430px;
+    width: 400px;
+    height: 25vh;
+    background-color: rgba(240, 248, 255, 0.642);
+}
+.container .outputContainer h3{
+    margin: 15px 0 0 5px;
+    color: rgb(0, 0, 0);
+}

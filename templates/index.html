@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Boston real estate </title>
 </head>
 <body>
-    <h3>Sklearn Prediction Home</h3>
+    <div class="container">
+        <img src="./Images/Background.jpg" alt="" srcset="">
+        <div class="layout"></div>
+        <div class="inputContainer">
+            <label for="fname">Insert Details:</label>
+            <input placeholder="Input CHAS" id="CHAS"/>
+            <input name="fname" placeholder="Input RM" id="RM"/>
+            <input placeholder="Input TAX" id="TAX"/>
+            <input placeholder="Input B" id = "B" />
+            <input placeholder="Input LSTAT" id = "LSTAT" />
+            <br>
+            <button onclick="predict()" id="output" >Send</button>
+        </div>
+        <div class="outputContainer">
+            <h3>Output:</h3>
+        </div>
+    </div>
+    
 </body>
 </html>
